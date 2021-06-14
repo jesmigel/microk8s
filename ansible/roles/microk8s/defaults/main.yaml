@@ -14,15 +14,15 @@ microk8s_handlers_list:
 
 microk8s_users:
 - user_id: vagrant
-  user_shell: /bin/zsh
+  user_shell: /bin/bash
   groups: microk8s
 
+kubeconfig: admin.conf
 microk8s_addon_list:
 - dns
 - dashboard
 - ha-cluster
 - helm3
 - ingress
-- istio
 - kubeflow
 - rbac

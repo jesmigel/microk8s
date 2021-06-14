@@ -9,3 +9,21 @@
 
 - name: reset ssh connection to refresh group
   meta: reset_connection
+
+- name: Generate kubeconfig
+  ansible.builtin.command:
+    cmd: microk8s config
+  register: kubeconfig
+
+- name: Write file to home directory
+  copy:
+      dest: "./{{ kubeconfig }}"
+      content: |
+        {{ kubeconfig.stdout }}
+
+- name: Copy file from remote to local
+  ansible.builtin.fetch:
+    src: "./{{ kubeconfig }}"
+    dest: "./.ignore.{{ kubeconfig }}"
+    flat: yes
+    
