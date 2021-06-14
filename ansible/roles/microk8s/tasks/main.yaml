@@ -1,0 +1,9 @@
+---
+- name: Install microk8s
+  import_tasks: install.yaml
+
+- name: Apply RBAC
+  import_tasks: rbac.yaml
+
+- name: Enable microk8s addons
+  import_tasks: addons.yaml

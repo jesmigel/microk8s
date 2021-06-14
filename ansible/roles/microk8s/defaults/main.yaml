@@ -1,0 +1,28 @@
+---
+microk8s_snap_list:
+- name: microk8s
+  channel: 1.20/stable
+  classic: yes
+
+microk8s_handlers_list:
+- status snap.microk8s.daemon-apiserver-kicker.service
+- status snap.microk8s.daemon-proxy.service
+- status snap.microk8s.daemon-apiserver.service
+- status snap.microk8s.daemon-scheduler.service
+- status snap.microk8s.daemon-cluster-agent.service
+- status snap.microk8s.daemon-kubelet.service
+
+microk8s_users:
+- user_id: vagrant
+  user_shell: /bin/zsh
+  groups: microk8s
+
+microk8s_addon_list:
+- dns
+- dashboard
+- ha-cluster
+- helm3
+- ingress
+- istio
+- kubeflow
+- rbac

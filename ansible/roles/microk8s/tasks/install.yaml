@@ -1,0 +1,8 @@
+---
+- name: Install snap microk8s
+  include_role:
+    name: common
+    tasks_from: snap.yaml
+  vars:
+    snap_list: "{{ microk8s_snap_list }}"
+    snap_handler_list: "{{ microk8s_handler_list }}"

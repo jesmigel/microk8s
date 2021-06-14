@@ -1,0 +1,30 @@
+---
+- name: status snap.microk8s.daemon-apiserver-kicker.service
+  service:
+    name: snap.microk8s.daemon-apiserver-kicker.service
+    state: started
+
+- name: status snap.microk8s.daemon-proxy.service
+  service:
+    name: snap.microk8s.daemon-proxy.service
+    state: started
+
+- name: status snap.microk8s.daemon-apiserver.service
+  service:
+    name: snap.microk8s.daemon-apiserver.service
+    state: started
+
+- name: status snap.microk8s.daemon-scheduler.service
+  service:
+    name: snap.microk8s.daemon-scheduler.service
+    state: started
+
+- name: status snap.microk8s.daemon-cluster-agent.service
+  service:
+    name: snap.microk8s.daemon-cluster-agent.service
+    state: started
+
+- name: status snap.microk8s.daemon-kubelet.service
+  service:
+    name: snap.microk8s.daemon-kubelet.service
+    state: started
