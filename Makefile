@@ -28,6 +28,13 @@ venv_init:
 	$(call venv_exec,.venv,pip install -r requirements.txt)
 	$(call venv_exec,.venv,pip install --upgrade pip)
 
+_KUBECONFIG=.ignore.admin.conf
+_KUBECONFIG_LOCAL=./$(_KUBECONFIG)
+_KUBECONFIG_LOCAL_SCRIPT=.ignore.src.sh
+get_kubeconfig:
+	mv ./ansible/$(_KUBECONFIG) .
+	echo '#!/bin/bash\nexport KUBECONFIG=$(_KUBECONFIG_LOCAL)' > $(_KUBECONFIG_LOCAL_SCRIPT)
+
 # VENV FUNCTIONS
 define venv_exec
 	$(if [ ! -f "$($(1)/bin/activate)" ], python3 -m venv $(1))
