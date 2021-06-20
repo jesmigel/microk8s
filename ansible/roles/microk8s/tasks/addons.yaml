@@ -3,3 +3,5 @@
   ansible.builtin.command: 
     cmd: "microk8s enable {{ item }}"
   loop: "{{ microk8s_addon_list  }}"
+  tags:
+  - addons

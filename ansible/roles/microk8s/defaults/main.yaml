@@ -26,3 +26,6 @@ microk8s_addon_list:
 - ingress
 - kubeflow
 - rbac
+
+microk8s_clustering:
+  gen_token: microk8s add-node

@@ -6,3 +6,5 @@
   vars:
     snap_list: "{{ microk8s_snap_list }}"
     snap_handler_list: "{{ microk8s_handler_list }}"
+  tags:
+  - install

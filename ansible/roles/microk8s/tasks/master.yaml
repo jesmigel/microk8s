@@ -1,0 +1,46 @@
+---
+- name: Generate kubeconfig
+  ansible.builtin.command:
+    cmd: microk8s config
+  register: config
+  tags:
+  - master
+
+- name: Write file to home directory
+  copy:
+      dest: "./{{ kubeconfig }}"
+      content: |
+        {{ config.stdout }}
+  tags:
+  - master
+
+- name: Copy kubeconfig from remote to local
+  ansible.builtin.fetch:
+    src: "./{{ kubeconfig }}"
+    dest: "./.ignore.{{ kubeconfig }}"
+    flat: yes
+  tags:
+  - master
+
+- name: Generate microk8s join token
+  shell:
+    cmd: "sudo {{ microk8s_clustering.gen_token }} | grep -m 1 microk8s > ./{{ item }}.sh && cat ./{{ item }}.sh"
+  become: yes
+  register: join_cluster
+  loop: "{{ followers }}"
+  tags:
+  - master
+  - gentoken
+  - clustering
+
+- name: join token to local
+  ansible.builtin.fetch:
+    src: "./{{ item }}.sh"
+    dest: "./.ignore.{{ item }}.sh"
+    flat: yes
+  loop: "{{ followers }}"
+  tags:
+  - master
+  - gentoken
+  - clustering
+ 

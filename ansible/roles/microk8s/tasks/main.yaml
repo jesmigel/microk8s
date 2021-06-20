@@ -7,3 +7,11 @@
 
 - name: Enable microk8s addons
   import_tasks: addons.yaml
+
+- name: Bootsrap master nodes
+  import_tasks: master.yaml
+  when: host_type is defined and host_type == 'master'
+ 
+- name: Bootsrap follower nodes
+  import_tasks: follower.yaml
+  when: host_type is defined and host_type == 'follower'
