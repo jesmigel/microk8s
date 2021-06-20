@@ -29,10 +29,10 @@ venv_init:
 	$(call venv_exec,.venv,pip install --upgrade pip)
 
 _KUBECONFIG=.ignore.admin.conf
-_KUBECONFIG_LOCAL=./$(_KUBECONFIG)
+_KUBECONFIG_LOCAL=microk8s.admin.conf
 _KUBECONFIG_LOCAL_SCRIPT=.ignore.src.sh
 get_kubeconfig:
-	mv ./ansible/$(_KUBECONFIG) .
+	mv ./ansible/$(_KUBECONFIG) ./$(_KUBECONFIG_LOCAL)
 	echo '#!/bin/bash\nexport KUBECONFIG=$(_KUBECONFIG_LOCAL)' > $(_KUBECONFIG_LOCAL_SCRIPT)
 
 # VENV FUNCTIONS
